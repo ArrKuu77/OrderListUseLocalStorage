@@ -1,0 +1,109 @@
+body{
+    background-color: lightslategrey;
+    font-family: "ZawgyiMyanmar";
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.LogoImage{
+    width: 10%;
+    border-radius: 40px;
+}
+.Title{
+    text-align: center;
+    color:midnightblue;
+    font-size: 40px;
+    font-weight: 900;
+}
+.headTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headTitleText{
+    color: wheat;
+    font-size: 40px;
+    font-weight: 900;
+    border-bottom: solid 2px black;
+}
+.Mother{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.FillMenu{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;   
+}
+.ProductFilder{
+    background-color: white;
+    border-radius: 10px;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    position: relative;
+    user-select: none;
+}
+
+.DownArrow{
+    cursor: pointer;
+    margin-left: 5%;
+    font-weight: 900;
+}
+.FillPlace{
+    width: 45%;
+}
+.dateandtime{
+    width: 20%;
+}
+.FillQuantity{
+    width: 10%;
+}
+.Product{
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: 110%;
+}
+.ProductName{
+    padding: 5%;
+    border-bottom: solid 2px lightslategrey;
+    cursor: pointer;
+    user-select: none;
+}
+.SaveButtonDiv{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 2%;
+}
+.OrderList{
+    margin-top: 10px;
+}
+.OrderListContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+.OrderListOneLine{
+    background-color: white;
+    font-size: 20px;
+    text-align: center;
+}
+.fa-trash{
+    font-size: 30px;
+    margin-left: 1%;
+}
+.purchased{
+    text-decoration: line-through;
+}
