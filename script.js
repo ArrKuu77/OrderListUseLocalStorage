@@ -45,10 +45,10 @@ SaveButton.addEventListener("click",() => {
     const PayOrderDate = new Date(dateandtime.value);
     const PayOrderDateGetTime = PayOrderDate.getTime();
     
-    if (OrderProduct === "ProductName"  ||parseInt(OrderQuantity)<1 || OrderPlace === ""|| PayOrderDateGetTime < currentGetTime) {
+    if (OrderProduct === "ProductName"  ||parseInt(OrderQuantity)<1 || FillQuantity.value === "" || OrderPlace === ""|| PayOrderDateGetTime < currentGetTime) {
         alert("Checkout  your list.Your mistake your order list")
     }else{
-
+        console.log(typeof FillQuantity.value)
         const deleIconTag = document.createElement("i");
         deleIconTag.classList.add("fas","fa-trash");
         deleIconTag.id = countNumber;
