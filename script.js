@@ -15,6 +15,11 @@ const ProductNameTextTag = document.getElementsByClassName("ProductNameText")[0]
 const ProductName = document.querySelectorAll(".ProductName");
 const ProductPrice = document.getElementsByClassName("ProductPrice")[0];
 const ProductPriceName = document.getElementsByClassName("ProductPriceName")[0];
+const FillNetQuantity = document.getElementsByClassName("FillNetQuantity")[0];
+const NetPriceDisplay = document.getElementsByClassName("NetPriceDisplay")[0];
+const FillNetPriceTotal = document.getElementsByClassName("FillNetPriceTotal")[0];
+const NetPriceDisplayTotal = document.getElementsByClassName("NetPriceDisplayTotal")[0];
+const FillNetQuantityNote = document.getElementsByClassName("FillNetQuantityNote")[0];
 
 const ProductPriceDisplay = (Number) => {
     ProductPrice.innerHTML = "";
@@ -72,18 +77,31 @@ ProductName.forEach((element) => {
         }else if (ProductNameTextTag.innerHTML === "Paraquick (PQK)") {
             ProductPriceDisplay(753);
         }
+        FillNetQuantity.style.display = "block";
+        FillNetPriceTotal.style.display = "none";
+        NetPriceDisplayTotal.innerHTML = "";
+        FillNetPriceTotal.value = "";
     })
 })
 
-const FillNetQuantity = document.getElementsByClassName("FillNetQuantity")[0];
-const NetPriceDisplay = document.getElementsByClassName("NetPriceDisplay")[0];
+
 
 FillNetQuantity.addEventListener("keyup",(event) => {
     NetPriceDisplay.innerHTML="";
+    FillNetPriceTotal.value = "";
+    NetPriceDisplayTotal.innerHTML = "";
     const ProductPriceNumber = parseInt(ProductPrice.innerHTML);
-    console.log(typeof ProductPriceNumber)
    const NetPrice =  Math.floor(ProductPriceNumber*10/(1+event.target.value));
    NetPriceDisplay.append(NetPrice);
+   FillNetPriceTotal.style.display = "block";
+})
+
+
+FillNetPriceTotal.addEventListener("keyup",(event) => {
+    NetPriceDisplayTotal.innerHTML = "";
+    const NetPriceDisplayTT = parseInt(NetPriceDisplay.innerHTML)
+    const NetPriceTotal = parseInt(event.target.value);
+    NetPriceDisplayTotal.append(NetPriceDisplayTT * NetPriceTotal)
 })
 
 const FillQuantity = document.getElementsByClassName("FillQuantity")[0];
@@ -106,11 +124,12 @@ SaveButton.addEventListener("click",() => {
 
     const OrderProduct = ProductNameTextTag.innerHTML;
     const OrderQuantity = parseInt(FillQuantity.value);
+    const FillNetQuantityNoteNumber = FillNetQuantityNote.value;
     const OrderPlace = FillPlace.value;
     const PayOrderDate = new Date(dateandtime.value);
     const PayOrderDateGetTime = PayOrderDate.getTime();
     
-    if (OrderProduct === "ProductName"  ||parseInt(OrderQuantity)<1 || FillQuantity.value === "" || OrderPlace === ""|| PayOrderDateGetTime < currentGetTime) {
+    if (OrderProduct === "ProductName"  || parseInt(OrderQuantity)<1 || parseInt(FillNetQuantityNoteNumber) <1 || FillNetQuantityNote.value ===""|| FillQuantity.value === "" || OrderPlace === ""|| PayOrderDateGetTime < currentGetTime) {
         alert("Checkout  your list.Your mistake your order list")
     }else{
         console.log(typeof FillQuantity.value)
@@ -137,15 +156,17 @@ SaveButton.addEventListener("click",() => {
             }
         })
 
-        OrderListOneLine.append(countNumber,". ProductName =>"+OrderProduct," /OrderQuantity =>" +OrderQuantity," /OrderPlace =>" +OrderPlace," /Delivery Date=>" + PayOrderDate.toLocaleDateString()," /Get Order Date =>" + CurrentDate.toLocaleDateString());
+        OrderListOneLine.append(countNumber,". ProductName =>"+OrderProduct," /OrderQuantity =>" +OrderQuantity," / NetQuantity =>"+FillNetQuantityNoteNumber ," /OrderPlace =>" +OrderPlace," /Delivery Date=>" + PayOrderDate.toLocaleDateString()," /Get Order Date =>" + CurrentDate.toLocaleDateString());
         OrderListContainer.append(OrderListOneLine,deleIconTag)
         OrderList.append(OrderListContainer);
 
-        const OrderListOneLineLStorage = countNumber +". ProductName =>"+ OrderProduct + " /OrderQuantity =>" +OrderQuantity + " /OrderPlace =>" + OrderPlace + " /Delivery Date=>" + PayOrderDate.toLocaleDateString() + " /Get Order Date =>" + CurrentDate.toLocaleDateString();
+        const OrderListOneLineLStorage = countNumber +". ProductName =>"+ OrderProduct + " /OrderQuantity =>" +OrderQuantity +" / NetQuantity =>"+FillNetQuantityNoteNumber + " /OrderPlace =>" + OrderPlace + " /Delivery Date=>" + PayOrderDate.toLocaleDateString() + " /Get Order Date =>" + CurrentDate.toLocaleDateString();
 
         localStorage.setItem(countNumber,OrderListOneLineLStorage)
         countNumber =+1;
         ProductNameTextTag.innerHTML = "ProductName";
+        FillQuantity.value = "";
+        FillNetQuantityNote.value = "";
     }
 })
 
