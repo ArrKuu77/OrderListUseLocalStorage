@@ -13,12 +13,77 @@ DownArrowTag.addEventListener("click",() => {
 
 const ProductNameTextTag = document.getElementsByClassName("ProductNameText")[0];
 const ProductName = document.querySelectorAll(".ProductName");
+const ProductPrice = document.getElementsByClassName("ProductPrice")[0];
+const ProductPriceName = document.getElementsByClassName("ProductPriceName")[0];
+
+const ProductPriceDisplay = (Number) => {
+    ProductPrice.innerHTML = "";
+    ProductPrice.append(Number);
+}
 
 ProductName.forEach((element) => {
     element.addEventListener("click",() => {
+        FillNetQuantity.value = "";
+        NetPriceDisplay.innerHTML = "";
+        ProductPriceName.innerHTML = "";
         const ProductNameText =  element.innerHTML;
+        ProductPriceName.append(ProductNameText,"Price =>");
         ProductNameTextTag.textContent = ProductNameText;
+        if(ProductNameTextTag.innerHTML === "LifeCort (LPI)"){
+            ProductPriceDisplay(1290);
+        }else if (ProductNameTextTag.innerHTML === "Ceftrialife (CFIM)") {
+            ProductPriceDisplay(1693);
+        }else if (ProductNameTextTag.innerHTML === "Dicinac (DCN)") {
+            ProductPriceDisplay(2042);
+        }else if (ProductNameTextTag.innerHTML === "Locto-Calamine (LCLO)") {
+            ProductPriceDisplay(6000);
+        }else if (ProductNameTextTag.innerHTML === "Rinotin (RNT)") {
+            ProductPriceDisplay(424);
+        }else if (ProductNameTextTag.innerHTML === "Lopo Plus (LPP)") {
+            ProductPriceDisplay(1131);
+        }else if (ProductNameTextTag.innerHTML === "Aceta X (ACX)") {
+            ProductPriceDisplay(633);
+        }else if (ProductNameTextTag.innerHTML === "Asclop (ACP)") {
+            ProductPriceDisplay(1320);
+        }else if (ProductNameTextTag.innerHTML === "Panpro20 (PNP)") {
+            ProductPriceDisplay(848);
+        }else if (ProductNameTextTag.innerHTML === "Perilac (PLC)") {
+            ProductPriceDisplay(1131);
+        }else if (ProductNameTextTag.innerHTML === "Bacron (BOT)") {
+            ProductPriceDisplay(4242);
+        }else if (ProductNameTextTag.innerHTML === "Mextil 500 (MXT)") {
+            ProductPriceDisplay(4619);
+        }else if (ProductNameTextTag.innerHTML === "Glammer Capsule (GMC)") {
+            ProductPriceDisplay(8432);
+        }else if (ProductNameTextTag.innerHTML === "Andrex (OBS)") {
+            ProductPriceDisplay(12437);
+        }else if (ProductNameTextTag.innerHTML === "Nausidox (NSD)") {
+            ProductPriceDisplay(3827);
+        }else if (ProductNameTextTag.innerHTML === "Colla Max (CLM)") {
+            ProductPriceDisplay(3536);
+        }else if (ProductNameTextTag.innerHTML === "Q-10 Ultra Q10U") {
+            ProductPriceDisplay(21131);
+        }else if (ProductNameTextTag.innerHTML === "Mypar-500 (MYP)") {
+            ProductPriceDisplay(753);
+        }else if (ProductNameTextTag.innerHTML === "KORS (ORS)") {
+            ProductPriceDisplay(870);
+        }else if (ProductNameTextTag.innerHTML === "Troydom (TDM)") {
+            ProductPriceDisplay(580);
+        }else if (ProductNameTextTag.innerHTML === "Paraquick (PQK)") {
+            ProductPriceDisplay(753);
+        }
     })
+})
+
+const FillNetQuantity = document.getElementsByClassName("FillNetQuantity")[0];
+const NetPriceDisplay = document.getElementsByClassName("NetPriceDisplay")[0];
+
+FillNetQuantity.addEventListener("keyup",(event) => {
+    NetPriceDisplay.innerHTML="";
+    const ProductPriceNumber = parseInt(ProductPrice.innerHTML);
+    console.log(typeof ProductPriceNumber)
+   const NetPrice =  Math.floor(ProductPriceNumber*10/(1+event.target.value));
+   NetPriceDisplay.append(NetPrice);
 })
 
 const FillQuantity = document.getElementsByClassName("FillQuantity")[0];

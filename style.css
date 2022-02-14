@@ -107,3 +107,22 @@ body{
 .purchased{
     text-decoration: line-through;
 }
+.NetCalculator{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.FillNetQuantity{
+    width: 20%;
+}
+.ProductPriceName,.ProductPrice{
+    background-color: white;
+    color: black;
+    margin-right: 5%;
+}
+.NetPriceDisplay{
+    background-color: white;
+    color: black;
+    margin-left: 2%;
+}
