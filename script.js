@@ -59,7 +59,7 @@ ProductName.forEach((element) => {
         }else if (ProductNameTextTag.innerHTML === "Mextil 500 (MXT)") {
             ProductPriceDisplay(4619);
         }else if (ProductNameTextTag.innerHTML === "Glammer Capsule (GMC)") {
-            ProductPriceDisplay(8432);
+            ProductPriceDisplay(4216);
         }else if (ProductNameTextTag.innerHTML === "Andrex (OBS)") {
             ProductPriceDisplay(12437);
         }else if (ProductNameTextTag.innerHTML === "Nausidox (NSD)") {
@@ -76,9 +76,13 @@ ProductName.forEach((element) => {
             ProductPriceDisplay(580);
         }else if (ProductNameTextTag.innerHTML === "Paraquick (PQK)") {
             ProductPriceDisplay(753);
+        }else if (ProductNameTextTag.innerHTML === "Cetipen10 (CTP)") {
+            ProductPriceDisplay(522);
+        }else if (ProductNameTextTag.innerHTML === "Loratahist (LRH)") {
+            ProductPriceDisplay(1159);
         }
         FillNetQuantity.style.display = "block";
-        FillNetPriceTotal.style.display = "none";
+        FillNetPriceTotal.style.display = "block";
         NetPriceDisplayTotal.innerHTML = "";
         FillNetPriceTotal.value = "";
     })
@@ -90,16 +94,19 @@ FillNetQuantity.addEventListener("keyup",(event) => {
     NetPriceDisplay.innerHTML="";
     FillNetPriceTotal.value = "";
     NetPriceDisplayTotal.innerHTML = "";
-    const ProductPriceNumber = parseInt(ProductPrice.innerHTML);
-   const NetPrice =  Math.floor(ProductPriceNumber*10/(1+event.target.value));
-   NetPriceDisplay.append(NetPrice);
-   FillNetPriceTotal.style.display = "block";
+    if (FillNetQuantity.value === "") {
+        FillNetQuantity.innerHTML = "";
+    }else{
+        const ProductPriceNumber = parseInt(ProductPrice.innerHTML);
+        const NetPrice =  Math.floor(ProductPriceNumber*10/(1+event.target.value));
+        NetPriceDisplay.append(NetPrice);
+    }
 })
 
 
 FillNetPriceTotal.addEventListener("keyup",(event) => {
     NetPriceDisplayTotal.innerHTML = "";
-    const NetPriceDisplayTT = parseInt(NetPriceDisplay.innerHTML)
+    const NetPriceDisplayTT = parseInt(ProductPrice.innerHTML)
     const NetPriceTotal = parseInt(event.target.value);
     NetPriceDisplayTotal.append(NetPriceDisplayTT * NetPriceTotal)
 })
